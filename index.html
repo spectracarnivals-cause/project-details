@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beats for a Cause · Corporate Partnership Overview</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --bg:        #F7F5F2;
+  --bg2:       #EFECEA;
+  --surface:   #FFFFFF;
+  --border:    #E4DFD8;
+
+  --ink:       #1E1A17;
+  --ink2:      #5A534C;
+  --ink3:      #9B9189;
+
+  --teal:      #2A7B6F;
+  --teal-lt:   #E8F4F2;
+  --teal-mid:  #4A9E92;
+
+  --rose:      #C45E6B;
+  --rose-lt:   #FAEEF0;
+  --rose-mid:  #D97A85;
+
+  --amber:     #B5783A;
+  --amber-lt:  #FDF3E7;
+  --amber-mid: #D4975A;
+
+  --slate:     #3D5A7A;
+  --slate-lt:  #EBF0F6;
+  --slate-mid: #5A7EA0;
+
+  --sage:      #5A7A5E;
+  --sage-lt:   #EDF4EE;
+
+  --line:      rgba(30,26,23,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16.5px;
+
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SUBTLE BACKGROUND TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(42,123,111,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 85% 75%, rgba(196,94,107,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(61,90,122,0.03) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+header {
+  position: relative; z-index: 2;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  overflow: hidden;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 48px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+
+.header-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.eyebrow-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--rose);
+  animation: blink 2.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+
+.eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  font-weight: 500;
+}
+
+header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+header h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.header-sub {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--ink2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink3);
+}
+
+.meta-icon { font-size: 14px; }
+
+.header-accent-line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--rose-mid) 50%, var(--amber-mid) 100%);
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════
+   MISSION BANNER
+══════════════════════════════ */
+.mission-banner {
+  position: relative; z-index: 2;
+  background: linear-gradient(135deg, var(--teal) 0%, #1E5F55 100%);
+  padding: 36px 48px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.mission-banner::before {
+  content: '❝';
+  position: absolute;
+  font-size: 180px;
+  color: rgba(255,255,255,0.04);
+  font-family: 'DM Serif Display', serif;
+  top: -20px; left: 32px;
+  line-height: 1;
+}
+
+.mission-quote {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 19px);
+  color: rgba(255,255,255,0.92);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  position: relative; z-index: 1;
+}
+
+.mission-attribution {
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  position: relative; z-index: 1;
+}
+
+/* ══════════════════════════════
+   MAIN CONTENT
+══════════════════════════════ */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 48px;
+  position: relative; z-index: 2;
+}
+
+/* SECTION HEADERS */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.section-label-line {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+}
+
+.section-label-text {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════
+   THE CAUSE — HUMAN STORY
+══════════════════════════════ */
+.cause-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cause-panel {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.cause-panel:last-child { border-right: none; }
+
+.cause-panel-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.icon-teal { background: var(--teal-lt); }
+.icon-rose { background: var(--rose-lt); }
+.icon-amber { background: var(--amber-lt); }
+.icon-slate { background: var(--slate-lt); }
+.icon-sage { background: var(--sage-lt); }
+
+.cause-panel h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.cause-panel p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.cause-panel .stat-number {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.cause-panel .stat-label {
+  font-size: 12px;
+  color: var(--ink3);
+  letter-spacing: 0.5px;
+}
+
+.cause-top-bar {
+  background: var(--teal-lt);
+  border-bottom: 1px solid rgba(42,123,111,0.15);
+  padding: 14px 28px;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cause-top-bar-text {
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ══════════════════════════════
+   THREE VERTICALS
+══════════════════════════════ */
+.verticals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+ 
+.vertical-title {
+  font-size: 21px;
+}
+
+.vertical-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.vertical-card:hover {
+  box-shadow: 0 12px 40px rgba(30,26,23,0.08);
+  transform: translateY(-2px);
+}
+
+.vertical-header {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.vertical-icon-wrap {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.vertical-number {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.vertical-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.vertical-body {
+  padding: 20px 24px 24px;
+}
+
+.vertical-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+#verticals {
+scroll-margin-top:65px;
+}
+
+.point-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.point-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 15.5px;
+  color: var(--ink2);
+  line-height: 1.7;
+  align-items: flex-start;
+}
+
+.point-marker {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+  font-size: 8px;
+  font-weight: 700;
+  color: white;
+}
+
+/* TIERS inside sponsor card */
+.tier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.tier-item {
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tier-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.tier-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tier-desc {
+  font-size: 10px;
+  opacity: 0.65;
+  margin-top: 1px;
+}
+
+/* DAY FEST stall tags */
+.stall-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.stall-tag {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--ink2);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ══════════════════════════════
+   PARTNERS ROW
+══════════════════════════════ */
+.partners-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.partner-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+  background: var(--bg);
+  transition: all 0.2s;
+}
+
+.partner-card:hover {
+  background: var(--surface);
+  box-shadow: 0 4px 16px rgba(30,26,23,0.06);
+}
+
+.partner-icon { font-size: 24px; margin-bottom: 8px; }
+.partner-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.partner-role { font-size: 10.5px; color: var(--ink3); line-height: 1.4; }
+
+.partner-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.status-confirmed { background: var(--teal-lt); color: var(--teal); }
+.status-discussion { background: var(--amber-lt); color: var(--amber); }
+
+/* ══════════════════════════════
+   WHY PARTNER — BENEFITS
+══════════════════════════════ */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.benefit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: all 0.2s;
+}
+
+.benefit-card:hover {
+  box-shadow: 0 8px 28px rgba(30,26,23,0.07);
+}
+
+.benefit-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.benefit-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.benefit-text {
+  font-size: 16px;
+  color: var(--ink2);
+  line-height: 1.75;
+}
+
+/* ══════════════════════════════
+   IMPACT METRICS
+══════════════════════════════ */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.metric-cell {
+  background: var(--surface);
+  padding: 28px 20px;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.metric-cell:hover { background: var(--bg2); }
+
+.metric-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--ink);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.metric-accent { color: var(--teal); }
+
+/* ══════════════════════════════
+   CSR COMPLIANCE NOTE
+══════════════════════════════ */
+.compliance-note {
+  background: var(--sage-lt);
+  border: 1px solid rgba(90,122,94,0.2);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.compliance-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.compliance-text {
+  font-size: 13px;
+  color: var(--sage);
+  line-height: 1.65;
+}
+
+.compliance-text strong {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13.5px;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+.footer-cta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(42,123,111,0.05) 0%, transparent 70%);
+}
+
+.footer-cta h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 10px;
+  position: relative; z-index: 1;
+}
+
+.footer-cta p {
+  font-size: 14px;
+  color: var(--ink2);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.7;
+  position: relative; z-index: 1;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: white;
+}
+.btn-primary:hover { background: #1E5F55; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink2);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--bg2); }
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 1px;
+  position: relative; z-index: 2;
+}
+
+footer a { color: var(--teal); text-decoration: none; }
+
+/* ══════════════════════════════
+   ANIMATIONS
+══════════════════════════════ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 960px) {
+  .header-inner { grid-template-columns: 1fr; padding: 36px 24px 28px; }
+  .header-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .content { padding: 40px 24px; }
+  .cause-section { grid-template-columns: 1fr; }
+  .cause-panel { border-right: none; border-bottom: 1px solid var(--border); }
+  .cause-panel:last-child { border-bottom: none; }
+  .verticals-grid { grid-template-columns: 1fr; }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+  .mission-banner { padding: 28px 24px; }
+}
+
+/* ── FLOATING ABOUT US BUTTON ── */
+.about-floating-btn {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: white;
+  padding: 14px 34px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: all 0.25s ease;
+}
+
+.about-floating-btn:hover {
+  background: #1E5F55;
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* ── STICKY CORPORATE ACTION BAR ── */
+
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+
+  padding: 14px 16px;
+
+  z-index: 9999;
+
+  box-shadow: 0 -6px 20px rgba(0,0,0,0.08);
+}
+
+.action-btn {
+  background: var(--teal);
+  color: white;
+
+  padding: 12px 24px;
+
+  border-radius: 8px;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: #1E5F55;
+  transform: translateY(-2px);
+}
+
+.action-btn.secondary {
+  background: transparent;
+  color: var(--ink2);
+  border: 1px solid var(--border);
+}
+
+.action-btn.secondary:hover {
+  background: var(--bg2);
+}
+
+@media (max-width: 768px) {
+
+.action-bar {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 100%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+  <a href="about.html">
+  <button class="about-floating-btn">ABOUT US</button>
+</a>
+
+<a href="about.html" class="about-floating-btn">ABOUT US</a>
+  
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner fade-in">
+    <div>
+      <div class="header-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-text">Spectra Carnivals LLP · Partnership Proposal</span>
+      </div>
+      <h1>Beats for a <em>Cause</em></h1>
+      <p class="header-sub">A music-driven social impact initiative supporting cochlear implant children in Kerala — where every note played becomes a gift of sound for a child who needs it most.</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-icon">🎵</span> Thaikkudam Bridge · Live Concert</div>
+      <div class="meta-item"><span class="meta-icon">📍</span> Nishagandhi Auditorium, Trivandrum</div>
+      <div class="meta-item"><span class="meta-icon">📅</span> May 23, 2026 · 5 PM Onwards</div>
+      <div class="meta-item"><span class="meta-icon">👥</span> 3,000 – 10,000 Expected Attendees</div>
+    </div>
+  </div>
+  <div class="header-accent-line"></div>
+</header>
+
+<!-- ── MISSION BANNER ── -->
+<div class="mission-banner fade-in delay-1">
+  <p class="mission-quote">Kerala has successfully funded cochlear implant surgeries. Now we must ensure those children never return to silence.</p>
+  <p class="mission-attribution">The Mission · Beats for a Cause 2026</p>
+</div>
+
+<div class="content">
+
+  <!-- ── THE CAUSE ── -->
+  <div class="section-label fade-in delay-2">
+    <div class="section-label-line"></div>
+    <span class="section-label-text">The Human Story Behind the Music</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="cause-section fade-in delay-2">
+    <div class="cause-top-bar">
+      <span style="font-size:15px">👂</span>
+      <span class="cause-top-bar-text">Understanding the gap — Surgery is funded. Lifelong care is not. That's where your partnership makes the difference.</span>
+    </div>
+    <div class="cause-panel">
+      <div class="cause-panel-icon icon-rose">💔</div>
+      <h3>The Silent Crisis</h3>
+      <p>Government programs support cochlear implant surgeries — but the long-term cost of device maintenance overwhelms most families. Without upkeep, children risk losing their restored hearing.</p>
+    </div>
+    <div class="cause-panel">
+      <div class="cause-panel-icon icon-teal">🔧</div>
+      <h3>What Support Covers</h3>
+      <p>Processor replacements, battery packs, mapping services, and audiology follow-ups. Each child has a different need — identified and documented by NISH Trivandrum.</p>
+    </div>
+    <div class="cause-panel">
+      <div class="cause-panel-icon icon-amber">🌱</div>
+      <h3>Measurable Impact</h3>
+      <p>Every rupee of CSR funding is traceable to a specific child and a specific device. Post-event impact reports are provided to all CSR partners for compliance documentation.</p>
+    </div>
+  </div>
+
+  <div id="verticals" class="section-label fade-in delay-3"></div>
+  <!-- ── THREE VERTICALS ── -->
+  <div class="section-label fade-in delay-3">
+    <div class="section-label-line"></div>
+    <span class="section-label-text">Three Ways to Participate</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="verticals-grid">
+
+    <!-- CSR -->
+    <div class="vertical-card fade-in delay-3">
+      <div class="vertical-header">
+        <div class="vertical-icon-wrap icon-teal">💚</div>
+        <div>
+          <div class="vertical-number" style="color:var(--teal)">Vertical 01</div>
+          <div class="vertical-title">CSR Funding Partner</div>
+        </div>
+      </div>
+      <div class="vertical-body">
+        <p class="vertical-desc">Direct, accountable giving aligned with your company's CSR mandate. Every rupee donated flows to a named beneficiary child.</p>
+        <ul class="point-list">
+          <li>
+            <span class="point-marker" style="background:var(--teal)">✓</span>
+            100% fund utilisation toward cochlear device support
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--teal)">✓</span>
+            NISH Trivandrum curates verified beneficiary list
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--teal)">✓</span>
+            SilentKnight Audiology delivers & maintains equipment
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--teal)">✓</span>
+            CSR certificates & compliance documentation provided
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--teal)">✓</span>
+            Eligible under Section 135 of Companies Act
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SPONSORSHIP -->
+    <div class="vertical-card fade-in delay-4">
+      <div class="vertical-header">
+        <div class="vertical-icon-wrap icon-amber">🏆</div>
+        <div>
+          <div class="vertical-number" style="color:var(--amber)">Vertical 02</div>
+          <div class="vertical-title">Event Sponsorship</div>
+        </div>
+      </div>
+      <div class="vertical-body">
+        <p class="vertical-desc">Fund the operational backbone of the event while gaining premium brand visibility before a large, engaged audience.</p>
+        <ul class="point-list">
+          <li>
+            <span class="point-marker" style="background:var(--amber)">✓</span>
+            Prominent branding at Nishagandhi Auditorium
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--amber)">✓</span>
+            Digital promotions, posters & media outreach
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--amber)">✓</span>
+            Stage time, MC mentions & social media features
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--amber)">✓</span>
+            Association with healthcare & community leadership
+          </li>
+        </ul>
+        <div class="tier-grid">
+          <div class="tier-item" style="background:#FEF9EC; border:1px solid #E8C84A;">
+            <span class="tier-dot" style="background:#C9A227"></span>
+            <div><div class="tier-name" style="color:#9B7B1A">TITLE</div></div>
+          </div>
+          <div class="tier-item" style="background:#F4F6FA; border:1px solid #BCC8D8;">
+            <span class="tier-dot" style="background:#8899AA"></span>
+            <div><div class="tier-name" style="color:#556677">PLATINUM</div></div>
+          </div>
+          <div class="tier-item" style="background:#FFFBF0; border:1px solid #E0C060;">
+            <span class="tier-dot" style="background:#C8A030"></span>
+            <div><div class="tier-name" style="color:#9A7820">GOLD</div></div>
+          </div>
+          <div class="tier-item" style="background:#F5F6F7; border:1px solid #B8C0C8;">
+            <span class="tier-dot" style="background:#909DA8"></span>
+            <div><div class="tier-name" style="color:#5A6875">SILVER</div></div>
+          </div>
+          <div class="tier-item" style="background:#FAF2EC; border:1px solid #D0A080;" style="grid-column:1/-1">
+            <span class="tier-dot" style="background:#B07840"></span>
+            <div><div class="tier-name" style="color:#805830">BRONZE</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY FEST -->
+    <div class="vertical-card fade-in delay-5">
+      <div class="vertical-header">
+        <div class="vertical-icon-wrap icon-slate">🎪</div>
+        <div>
+          <div class="vertical-number" style="color:var(--slate)">Vertical 03</div>
+          <div class="vertical-title">Day Fest Exhibitor</div>
+        </div>
+      </div>
+      <div class="vertical-body">
+        <p class="vertical-desc">A daytime fair running alongside the concert, creating a captive, interactive audience for business exhibitors while driving cause awareness.</p>
+        <ul class="point-list">
+          <li>
+            <span class="point-marker" style="background:var(--slate)">✓</span>
+            Direct engagement with 3,000–10,000 attendees
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--slate)">✓</span>
+            Association with a socially impactful event
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--slate)">✓</span>
+            Cause activations woven through the festival space
+          </li>
+          <li>
+            <span class="point-marker" style="background:var(--slate)">✓</span>
+            Targeted audience — families, youth, professionals
+          </li>
+        </ul>
+        <div class="stall-tags">
+          <span class="stall-tag">🎓 Education</span>
+          <span class="stall-tag">🏦 Banking</span>
+          <span class="stall-tag">🚗 Automobile</span>
+          <span class="stall-tag">🍽️ Food & Beverage</span>
+          <span class="stall-tag">💎 Jewellery</span>
+          <span class="stall-tag">🏥 Healthcare</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── ANCHOR PARTNERS ── -->
+  <div class="section-label fade-in delay-3">
+    <div class="section-label-line"></div>
+    <span class="section-label-text">Anchor Partners & Credibility Network</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="partners-section fade-in delay-4">
+    <p style="font-size:13.5px; color:var(--ink2); line-height:1.7; max-width:680px;">A trusted, multi-institutional coalition ensuring accountability, medical oversight, and cultural reach — giving your partnership a credible and impactful home.</p>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-icon">🏛️</div>
+        <div class="partner-name">NISH Trivandrum</div>
+        <div class="partner-role">Beneficiary identification & support coordination</div>
+        <span class="partner-status status-confirmed">● Finalised</span>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">👂</div>
+        <div class="partner-name">SilentKnight Audiology</div>
+        <div class="partner-role">Cochlear equipment supply & maintenance</div>
+        <span class="partner-status status-confirmed">● Finalised</span>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🏥</div>
+        <div class="partner-name">KIMS Health</div>
+        <div class="partner-role">Medical partner & clinical credibility</div>
+        <span class="partner-status status-discussion">◐ Under Discussion</span>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🏥</div>
+        <div class="partner-name">GG Hospital</div>
+        <div class="partner-role">Healthcare partner & community presence</div>
+        <span class="partner-status status-discussion">◐ Under Discussion</span>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🎸</div>
+        <div class="partner-name">Thaikkudam Bridge</div>
+        <div class="partner-role">Headline performers · Cultural anchor</div>
+        <span class="partner-status status-confirmed">● Confirmed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHY PARTNER ── -->
+  <div class="section-label fade-in delay-4">
+    <div class="section-label-line"></div>
+    <span class="section-label-text">Why Your Organisation Should Be Here</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="benefits-grid fade-in delay-5">
+    <div class="benefit-card">
+      <div class="benefit-icon-wrap icon-teal">📊</div>
+      <div>
+        <div class="benefit-title">Verified, Reportable Impact</div>
+        <p class="benefit-text">Each cochlear device funded is documented and traceable to a specific child. Post-event reports meet CSR compliance requirements under Indian company law, making this a board-reportable contribution.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon-wrap icon-rose">❤️</div>
+      <div>
+        <div class="benefit-title">Emotional Brand Association</div>
+        <p class="benefit-text">Aligning your brand with a child's ability to hear — and with Kerala's favourite live band — creates a deeply human, memorable connection that PR campaigns rarely achieve.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon-wrap icon-slate">🎯</div>
+      <div>
+        <div class="benefit-title">Targeted Audience Reach</div>
+        <p class="benefit-text">3,000–10,000 attendees across the concert and day fest — families, young professionals, Technopark employees, and community leaders. A highly engaged, socially conscious audience.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon-wrap icon-amber">🤝</div>
+      <div>
+        <div class="benefit-title">Inclusive Healthcare Leadership</div>
+        <p class="benefit-text">Position your organisation as a champion of disability inclusion and child development — two of the most credible and lasting pillars of a corporate social responsibility identity.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── METRICS ── -->
+  <div class="section-label fade-in delay-5">
+    <div class="section-label-line"></div>
+    <span class="section-label-text">At a Glance</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="metrics-row fade-in delay-5">
+    <div class="metric-cell">
+      <span class="metric-value metric-accent">10K+</span>
+      <span class="metric-label">Expected Footfall<br/>(Concert + Day Fest)</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-value metric-accent">100%</span>
+      <span class="metric-label">CSR Funds to<br/>Direct Beneficiaries</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-value metric-accent">3</span>
+      <span class="metric-label">Partnership<br/>Verticals</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-value metric-accent">5</span>
+      <span class="metric-label">Sponsorship<br/>Tiers Available</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-value metric-accent">5+</span>
+      <span class="metric-label">Day Fest<br/>Exhibitor Sectors</span>
+    </div>
+  </div>
+
+  <!-- ── COMPLIANCE ── -->
+  <div class="compliance-note fade-in delay-6">
+    <span class="compliance-icon">📋</span>
+    <div class="compliance-text">
+      <strong>CSR Compliance Note for Corporate Partners</strong>
+      Contributions to cochlear implant support for underprivileged children are eligible under Schedule VII of the Companies Act, 2013 — specifically under healthcare and disability support mandates. All donations will be accompanied by utilisation certificates, beneficiary documentation, and a post-event impact report for your records.
+    </div>
+  </div>
+
+  <!-- ── FOOTER CTA ── -->
+  <div class="footer-cta fade-in delay-7">
+    <h2>Join the Movement</h2>
+    <p>Let's build a sustainable support ecosystem for cochlear implant children in Kerala — together. We invite you to be part of something that echoes far beyond one evening of music.</p>
+   </div>
+
+<footer>
+  <strong>Spectra Carnivals LLP</strong> · Event Management Group · Thiruvananthapuram, Kerala
+  <br/><br/>
+  Beats for a Cause · Nishagandhi Auditorium · May 23, 2026
+</footer>
+
+
+<div class="action-bar">
+
+<a href="#verticals" class="action-btn">
+Become CSR Partner
+</a>
+
+<a href="#verticals" class="action-btn">
+View Sponsorship
+</a>
+
+<a href="#verticals" class="action-btn">
+Book Day Fest Stall
+</a>
+
+</div>
+
+<script>
+document.querySelectorAll('.action-btn').forEach(btn=>{
+btn.addEventListener('click',function(){
+document.getElementById('verticals').scrollIntoView({behavior:'smooth'});
+});
+});
+</script>
+  
+</body>
+</html>
