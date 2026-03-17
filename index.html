@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Silent Wait — Kerala Cochlear Implant Crisis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════════════════════════════════
+       DESIGN TOKENS — unified dark rain palette
+    ════════════════════════════════════════ */
+    :root {
+      /* Original cream/parchment palette — kept for report sections */
+      --cream:        #F5F0E8;
+      --warm-white:   #FDFBF7;
+      --ink:          #1A1410;
+      --ink-muted:    #4A3F35;
+      --ink-faint:    #9A8E84;
+      --red:          #C1372A;
+      --red-light:    #F5E8E6;
+      --amber:        #D4891A;
+      --amber-light:  #FDF3E0;
+      --green:        #2A6A42;
+      --green-light:  #E4F0E9;
+      --rule:         rgba(26,20,16,0.12);
+      --rule-strong:  rgba(26,20,16,0.25);
+
+      /* Video-palette darks — used for the bridge section */
+      --rain-dark:    #0C1117;
+      --rain-mid:     #161D26;
+      --rain-border:  rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ════════════════════════════════════════
+       NAV (shared)
+    ════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 22px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(12, 17, 23, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rain-border);
+    }
+
+    .nav-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 13.2px;
+      letter-spacing: 0.15em;
+      color: rgba(245,240,232,0.9);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.82);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* ════════════════════════════════════════
+       VIDEO HERO
+    ════════════════════════════════════════ */
+    #video-hero {
+      position: relative;
+      height: 100vh;
+      padding-top: 68px;  /* nav height offset */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    video.bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    #video-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, transparent 25%, rgba(8,12,18,0.78) 100%),
+        linear-gradient(to bottom, rgba(8,12,18,0.25) 0%, rgba(8,12,18,0.08) 50%, rgba(8,12,18,0.6) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .video-overlay {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    /* headline block — fixed position, no layout shift */
+    .headline-block {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hl-spacer {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.1;
+      white-space: nowrap;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .hl {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.9), 0 0 80px rgba(255,255,255,0.06);
+      transition: opacity 0.7s ease;
+    }
+    #hl-rain   { opacity: 1; }
+    #hl-silent { opacity: 0; }
+
+    /* always-on icons */
+    .icons-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .icon-headphone {
+      font-size: clamp(18px, 2.5vw, 26px);
+      line-height: 1;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1);    }
+      50%       { opacity: 0.5; transform: scale(0.92); }
+    }
+
+    /* wave bars */
+    .wave-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 26px;
+    }
+    .wave-wrap span {
+      display: block;
+      width: 3px;
+      background: #fff;
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    .wave-wrap span:nth-child(1) { height: 10px; animation: bar 1.1s ease-in-out          infinite alternate; }
+    .wave-wrap span:nth-child(2) { height: 20px; animation: bar 0.9s ease-in-out 0.10s    infinite alternate; }
+    .wave-wrap span:nth-child(3) { height: 14px; animation: bar 1.3s ease-in-out 0.20s    infinite alternate; }
+    .wave-wrap span:nth-child(4) { height: 24px; animation: bar 0.8s ease-in-out 0.05s    infinite alternate; }
+    .wave-wrap span:nth-child(5) { height: 12px; animation: bar 1.0s ease-in-out 0.15s    infinite alternate; }
+    .wave-wrap span:nth-child(6) { height: 18px; animation: bar 1.2s ease-in-out 0.30s    infinite alternate; }
+    .wave-wrap span:nth-child(7) { height: 8px;  animation: bar 1.0s ease-in-out           infinite alternate; }
+    .wave-wrap.muted span {
+      animation: none !important;
+      height: 3px !important;
+      transition: height 0.6s ease;
+      opacity: 0.35;
+    }
+    @keyframes bar {
+      from { transform: scaleY(0.35); }
+      to   { transform: scaleY(1);    }
+    }
+
+    /* CTA button */
+    #cta-btn {
+      position: relative;
+      padding: 18px 52px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 2px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    #cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.07);
+      transform: translateX(-105%);
+      transition: transform 0.45s ease;
+    }
+    #cta-btn:hover::before { transform: translateX(0); }
+    #cta-btn:hover { border-color: rgba(255,255,255,0.9); }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      width: 10px; height: 10px;
+      transform: scale(0);
+      animation: ripple-out 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-out { to { transform: scale(28); opacity: 0; } }
+
+    /* ════════════════════════════════════════
+       TAP-TO-START OVERLAY
+    ════════════════════════════════════════ */
+    #start-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(8, 12, 18, 0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      cursor: pointer;
+      transition: opacity 0.7s ease;
+    }
+    #start-overlay.hidden { opacity: 0; pointer-events: none; }
+    #start-overlay .headphone-icon { font-size: 64px; animation: pulse 1.8s ease-in-out infinite; }
+    #start-overlay h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    #start-overlay p {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    #start-overlay .tap-btn {
+      margin-top: 12px;
+      padding: 14px 44px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #start-overlay .tap-btn:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+    /* ── OVERLAY KICKER — Kerala Cochlear Crisis 2025 ── */
+    #start-overlay .overlay-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 17px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      opacity: 0;
+      transform: translateY(-8px);
+      /* fade in after overlay appears */
+      animation: kickerIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+      margin-bottom: 54px;
+    }
+
+    @keyframes kickerIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+
+
+    /* ── SCROLL DOWN ARROW on video hero ── */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .hero-scroll-hint .scroll-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .hero-scroll-hint svg {
+      width: 28px;
+      height: 28px;
+      animation: heroBounce 1.6s ease-in-out infinite;
+    }
+    .hero-scroll-hint svg circle {
+      stroke: rgba(255,255,255,0.25);
+      fill: none;
+      stroke-width: 1;
+    }
+    .hero-scroll-hint svg polyline {
+      stroke: rgba(255,255,255,0.7);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @keyframes heroBounce {
+      0%, 100% { transform: translateY(0);    opacity: 1; }
+      50%       { transform: translateY(7px);  opacity: 0.5; }
+    }
+
+    /* ════════════════════════════════════════
+       BRIDGE — dark rain-palette strip between
+       video and report, with scroll prompt
+    ════════════════════════════════════════ */
+    .bridge {
+      background: linear-gradient(180deg, #0C1117 0%, #111820 60%, var(--ink) 100%);
+      padding: 80px 60px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      position: relative;
+    }
+    .bridge-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .bridge-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      max-width: 700px;
+    }
+    .bridge-heading em { font-style: italic; color: var(--red); }
+    .bridge-sub {
+      font-size: 18.4px;
+      font-weight: 300;
+      color: rgba(245,240,232,0.55);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .bridge-scroll {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+    }
+    .scroll-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .scroll-arrow span {
+      display: block;
+      width: 14px;
+      height: 14px;
+      border-right: 1.5px solid rgba(245,240,232,0.45);
+      border-bottom: 1.5px solid rgba(245,240,232,0.45);
+      transform: rotate(45deg);
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    .scroll-arrow span:nth-child(2) { animation-delay: 0.18s; opacity: 0.65; }
+    .scroll-arrow span:nth-child(3) { animation-delay: 0.36s; opacity: 0.35; }
+    @keyframes arrowBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0);   opacity: 1; }
+      50%       { transform: rotate(45deg) translateY(5px); opacity: 0.4; }
+    }
+    /* stats strip inside bridge */
+    .bridge-stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(245,240,232,0.1);
+      padding-top: 40px;
+      margin-top: 16px;
+      width: 100%;
+      max-width: 900px;
+      justify-content: center;
+    }
+    .bridge-stat {
+      flex: 1;
+      padding: 0 32px;
+      border-right: 1px solid rgba(245,240,232,0.08);
+      text-align: center;
+    }
+    .bridge-stat:last-child { border-right: none; }
+    .bridge-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .bridge-stat .num span { color: var(--red); }
+    .bridge-stat .label {
+      font-size: 12.7px;
+      color: rgba(245,240,232,0.38);
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+    }
+
+    /* ════════════════════════════════════════
+       REPORT — masthead removed, nav kept
+    ════════════════════════════════════════ */
+
+    /* ── SECTION STRUCTURE ── */
+    .section {
+      padding: 100px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 64px;
+    }
+    .section-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+      padding-top: 8px;
+      min-width: 40px;
+    }
+    .section-title-block { flex: 1; }
+    .section-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .section-title em { font-style: italic; color: var(--red); }
+    .section-intro {
+      font-size: 19.6px;
+      color: var(--ink-muted);
+      max-width: 600px;
+      margin-top: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── PAIN GRID ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--ink);
+    }
+    .pain-card {
+      background: var(--warm-white);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .pain-card:hover { background: var(--cream); }
+    .pain-card.featured {
+      grid-column: span 2;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .pain-card.featured:hover { background: #2A2018; }
+    .pain-card.featured .pain-label  { color: var(--amber); }
+    .pain-card.featured .pain-number { color: var(--cream); opacity: 0.08; }
+    .pain-card.featured .pain-title  { color: var(--cream); }
+    .pain-card.featured .pain-body   { color: rgba(245,240,232,0.65); }
+    .pain-card.featured .pain-data   { color: var(--red); border-color: rgba(193,55,42,0.3); background: rgba(193,55,42,0.1); }
+    .pain-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--ink);
+      opacity: 0.05;
+      position: absolute;
+      top: 20px; right: 30px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .pain-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .pain-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .pain-body {
+      font-size: 16.1px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .pain-data {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 12.7px;
+      background: var(--red-light);
+      color: var(--red);
+      border: 1px solid rgba(193,55,42,0.2);
+      padding: 6px 14px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DATA SECTION ── */
+    .data-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+    .data-row.reverse { direction: rtl; }
+    .data-row.reverse > * { direction: ltr; }
+    .chart-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 24px;
+    }
+    .chart-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .chart-body {
+      font-size: 16.1px;
+      color: var(--ink-muted);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .bar-chart { margin-top: 8px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .bar-name { font-size: 13.8px; color: var(--ink-muted); min-width: 130px; font-weight: 400; }
+    .bar-track { flex: 1; height: 8px; background: var(--cream); border-radius: 1px; overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      border-radius: 1px;
+      background: var(--ink);
+      transform-origin: left;
+      animation: barGrow 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+      transform: scaleX(0);
+    }
+    .bar-fill.red   { background: var(--red); }
+    .bar-fill.amber { background: var(--amber); }
+    .bar-fill.green { background: var(--green); }
+    .bar-val { font-family: 'DM Mono', monospace; font-size: 12.7px; color: var(--ink-faint); min-width: 60px; text-align: right; }
+    @keyframes barGrow { to { transform: scaleX(1); } }
+
+    /* Waffle chart */
+    .waffle { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; margin: 20px 0; }
+    .waffle-cell { aspect-ratio: 1; border-radius: 1px; background: var(--cream); }
+    .waffle-cell.filled  { background: var(--red); }
+    .waffle-cell.partial { background: var(--amber); }
+    .waffle-cell.covered { background: var(--green); }
+    .waffle-legend { display: flex; gap: 24px; margin-top: 12px; }
+    .wl-item { display: flex; align-items: center; gap: 8px; font-size: 13.8px; color: var(--ink-muted); }
+    .wl-dot  { width: 10px; height: 10px; border-radius: 1px; flex-shrink: 0; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 1px; background: var(--rule-strong); }
+    .tl-item { position: relative; margin-bottom: 32px; }
+    .tl-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); border: 2px solid var(--warm-white); outline: 1px solid var(--ink); }
+    .tl-item.crisis::before { background: var(--red);   outline-color: var(--red); }
+    .tl-item.warn::before   { background: var(--amber); outline-color: var(--amber); }
+    .tl-item.ok::before     { background: var(--green); outline-color: var(--green); }
+    .tl-year  { font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 0.15em; color: var(--ink-faint); margin-bottom: 4px; }
+    .tl-event { font-size: 16.1px; font-weight: 500; margin-bottom: 4px; }
+    .tl-note  { font-size: 15px; color: var(--ink-muted); font-weight: 300; }
+
+    /* Cost table */
+    .cost-table { width: 100%; border-collapse: collapse; }
+    .cost-table thead th { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); padding: 12px 20px; text-align: left; border-bottom: 1px solid var(--rule-strong); }
+    .cost-table tbody td { padding: 18px 20px; font-size: 16.1px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    .cost-table tbody tr:hover td { background: var(--cream); }
+    .cost-table .cost-item   { font-weight: 500; }
+    .cost-table .cost-amount { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--red); white-space: nowrap; }
+    .cost-table .cost-note   { font-size: 13.8px; color: var(--ink-faint); font-weight: 300; line-height: 1.5; }
+    .cost-table .cost-impact { font-size: 13.8px; font-weight: 400; color: var(--ink-muted); }
+    .cost-table tfoot td     { padding: 18px 20px; font-weight: 500; border-top: 1px solid var(--rule-strong); font-size: 15px; }
+    .cost-table tfoot .cost-amount { font-size: 16px; font-weight: 700; }
+    .badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; font-weight: 400; }
+    .badge-red   { background: var(--red-light);   color: var(--red); }
+    .badge-amber { background: var(--amber-light);  color: var(--amber); }
+    .badge-green { background: var(--green-light);  color: var(--green); }
+
+    /* Brain grid */
+    .brain-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: var(--rule); margin-bottom: 2px; }
+    .brain-card { background: var(--warm-white); padding: 32px 28px; transition: background 0.3s; }
+    .brain-card:hover { background: var(--cream); }
+    .brain-domain { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+    .brain-icon-wrap { width: 36px; height: 36px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 18px; }
+    .brain-effect  { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .brain-detail  { font-size: 13.8px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
+    .brain-severity { display: flex; gap: 3px; margin-top: 14px; }
+    .severity-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rule-strong); }
+    .severity-dot.active { background: var(--red); }
+
+    /* Urgency strip */
+    .urgency-strip { background: var(--ink); color: var(--cream); padding: 80px 60px; position: relative; overflow: hidden; }
+    .masthead-noise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); background-size: 256px; opacity: 0.6; pointer-events: none; }
+    .urgency-strip .masthead-noise { opacity: 0.4; }
+    .urgency-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+    .urgency-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 32px; }
+    .urgency-quote { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3.5vw, 42px); font-weight: 400; font-style: italic; line-height: 1.3; color: var(--cream); max-width: 800px; margin-bottom: 24px; position: relative; }
+    .urgency-quote::before { content: '\201C'; font-size: 120px; color: rgba(193,55,42,0.2); position: absolute; top: -30px; left: -20px; line-height: 1; pointer-events: none; font-family: 'Playfair Display', serif; }
+    .urgency-source { font-size: 15px; color: rgba(245,240,232,0.4); font-weight: 300; }
+
+    /* Cohort cards */
+    .cohort-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); margin-bottom: 60px; }
+    .cohort-card { background: var(--warm-white); padding: 40px; }
+    .cohort-age   { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .cohort-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); margin-bottom: 16px; }
+    .cohort-count { font-size: 13px; color: var(--ink-muted); margin-bottom: 12px; font-weight: 300; }
+    .cohort-crisis { font-size: 13px; color: var(--red); font-weight: 500; padding: 8px 0; border-top: 1px solid rgba(193,55,42,0.15); margin-top: 8px; }
+    .cohort-card.urgent { background: var(--ink); }
+    .cohort-card.urgent .cohort-age   { color: var(--cream); }
+    .cohort-card.urgent .cohort-label { color: rgba(245,240,232,0.35); }
+    .cohort-card.urgent .cohort-count { color: rgba(245,240,232,0.6); }
+    .cohort-card.urgent .cohort-crisis { color: var(--red); border-color: rgba(193,55,42,0.25); }
+
+    /* CTA */
+    .cta-section { background: var(--red); padding: 100px 60px; }
+    .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cta-headline { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.5vw, 56px); font-weight: 900; line-height: 1.0; color: #fff; letter-spacing: -0.02em; }
+    .cta-headline em { font-style: italic; color: rgba(255,255,255,0.6); }
+    .cta-actions { display: flex; flex-direction: column; gap: 16px; }
+    .cta-action { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 24px 28px; border-radius: 2px; color: #fff; transition: background 0.2s; }
+    .cta-action:hover { background: rgba(255,255,255,0.18); }
+    .cta-action-num    { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .cta-action-title  { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .cta-action-detail { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; }
+
+    /* Pull quote */
+    .pull-quote { border-left: 3px solid var(--red); padding: 4px 0 4px 28px; margin: 48px 0; }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; line-height: 1.4; color: var(--ink); margin-bottom: 10px; }
+    .pull-quote cite { font-family: 'DM Mono', monospace; font-size: 12.7px; letter-spacing: 0.12em; color: var(--ink-faint); font-style: normal; }
+
+    /* Footer */
+    footer { background: var(--ink); color: rgba(245,240,232,0.35); padding: 40px 60px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; }
+    footer a { color: rgba(245,240,232,0.5); text-decoration: none; }
+    footer a:hover { color: var(--cream); }
+
+    /* Masthead eyebrow reuse */
+    .masthead-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #video-hero .video-overlay { padding: 0 20px; }
+      .bridge { padding: 60px 24px 80px; }
+      .bridge-stats { flex-direction: column; gap: 24px; }
+      .bridge-stat { border-right: none; border-bottom: 1px solid rgba(245,240,232,0.08); padding-bottom: 24px; }
+      .section { padding: 60px 24px; }
+      .section-header { flex-direction: column; gap: 12px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .pain-card.featured { grid-column: span 1; }
+      .data-row { grid-template-columns: 1fr; gap: 40px; }
+      .brain-grid { grid-template-columns: 1fr 1fr; }
+      .cohort-wrap { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .cta-section { padding: 60px 24px; }
+      .urgency-strip { padding: 60px 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+      .hl { white-space: normal; text-align: center; width: 90vw; transform: translateX(-50%); }
+      .hl-spacer { white-space: normal; width: 90vw; }
+    }
+
+    /* ── FROSTED FLOATING BUTTON ── */
+    #project-details-btn {
+      position: fixed;
+      right: 28px;
+      bottom: 32px;
+      z-index: 500;
+
+      /* frosted glass */
+      background: rgba(12, 17, 23, 0.62);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+      border: 1px solid rgba(245,240,232,0.18);
+      border-radius: 3px;
+
+      /* horizontal layout */
+      writing-mode: horizontal-tb;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      /* typography */
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(245,240,232,0.9);
+      text-decoration: none;
+      white-space: nowrap;
+
+      /* red bottom accent line */
+      box-shadow:
+        inset 0 -2px 0 rgba(193,55,42,0.8),
+        0 8px 32px rgba(0,0,0,0.5),
+        0 2px 8px rgba(0,0,0,0.3);
+
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease,
+                  color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+      animation: btnSlideIn 0.7s cubic-bezier(0.16,1,0.3,1) 1.2s both;
+    }
+
+    #project-details-btn::before {
+      content: '🎵';
+      font-size: 15px;
+      opacity: 0.8;
+    }
+
+    #project-details-btn:hover {
+      background: rgba(193,55,42,0.28);
+      border-color: rgba(193,55,42,0.5);
+      color: #fff;
+      box-shadow:
+        inset 0 -2px 0 rgba(193,55,42,1),
+        0 12px 40px rgba(193,55,42,0.22),
+        0 4px 12px rgba(0,0,0,0.4);
+      transform: translateY(-3px);
+    }
+
+    @keyframes btnSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      #project-details-btn {
+        right: 12px;
+        bottom: 16px;
+        font-size: 12px;
+        padding: 11px 16px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══ TAP TO START OVERLAY ══ -->
+<div id="start-overlay">
+  <div class="overlay-kicker">Kerala Cochlear Crisis — 2025</div>
+  <div class="headphone-icon">🎧</div>
+  <h2>Put on your headphones</h2>
+  <p>Best experienced with sound</p>
+  <button class="tap-btn">Tap to Begin</button>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav">
+  <div class="nav-brand">Kerala Cochlear Crisis — 2025</div>
+  <ul class="nav-links">
+    <li><a href="#pain-points">Pain Points</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#brain">Brain Impact</a></li>
+    <li><a href="#cohorts">Who's Waiting</a></li>
+    <li><a href="#act">Act Now</a></li>
+  </ul>
+</nav>
+
+<!-- ══ VIDEO HERO ══ -->
+<section id="video-hero">
+  <video class="bg" id="hero-video" autoplay loop muted playsinline>
+    <source src="D:\1.Spectracarnivals\2. Promotional Materials\0. Cause Driven Campaigns\Digital Media\RainSoundUnmute.mp4" type="video/mp4">
+  </video>
+
+  <div class="video-overlay">
+    <div class="headline-block">
+      <div class="hl-spacer">The Silent Wait</div>
+      <div class="hl" id="hl-rain">Feel the Rain</div>
+      <div class="hl" id="hl-silent">The Silent Wait</div>
+      <div class="icons-row">
+        <span class="icon-headphone">🎧</span>
+        <div class="wave-wrap" id="wave">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <button id="cta-btn">Click Me</button>
+  </div>
+  <a class="hero-scroll-hint" href="#pain-points">
+    <span class="scroll-label">Scroll down</span>
+    <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="13"/>
+      <polyline points="9,12 14,18 19,12"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ══ BRIDGE — connects video emotion to report ══ -->
+<div class="bridge">
+  <div class="bridge-label">A neurodevelopmental emergency</div>
+  <h2 class="bridge-heading">That silence you just chose to sit in?<br>For 900+ children in Kerala, it is <em>not a choice.</em></h2>
+  <p class="bridge-sub">Their cochlear implant processors are failing, aging out of support, or simply unaffordable to replace. Every week of silence costs three weeks of speech development. Scroll down to understand the full scale of what's quietly happening.</p>
+  <div class="bridge-stats">
+    <div class="bridge-stat">
+      <div class="num">1,<span>700</span></div>
+      <div class="label">Children received govt-supported<br>cochlear implants since 2012</div>
+    </div>
+    <div class="bridge-stat">
+      <div class="num"><span>900</span>+</div>
+      <div class="label">Now in the upgrade window —<br>processor 7–10 years old</div>
+    </div>
+    <div class="bridge-stat">
+      <div class="num"><span>360</span></div>
+      <div class="label">Confirmed unattended as of 2023<br>(CIACS report)</div>
+    </div>
+    <div class="bridge-stat">
+      <div class="num">3<span>wk</span></div>
+      <div class="label">Speech setback per every<br>1 week without a working device</div>
+    </div>
+  </div>
+  <div class="bridge-scroll">
+    Scroll to read the full report
+    <div class="scroll-arrow">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 1: PAIN POINTS ══ -->
+<div class="section-rule"></div>
+<div class="section" id="pain-points">
+  <div class="section-header fade-up">
+    <div class="section-number">01</div>
+    <div class="section-title-block">
+      <div class="section-kicker">The core problem</div>
+      <h2 class="section-title">Six pain points<br>breaking the system</h2>
+      <p class="section-intro">The government did its part at surgery. What fails afterward is a cascade of interlinked gaps — logistics, finance, awareness, and infrastructure — that together create silence where there should be sound.</p>
+    </div>
+  </div>
+
+  <div class="pain-grid">
+    <div class="pain-card featured fade-up">
+      <div class="pain-number">1</div>
+      <div class="pain-label">Critical — affects all 1,700+ beneficiaries</div>
+      <div class="pain-title" style="font-size:28px; margin-bottom:16px;">The upgrade gap no one planned for</div>
+      <p class="pain-body" style="max-width:700px; font-size:15px;">When the Kerala government launched Sruthi Tharangam in 2012, the plan covered surgery. But cochlear implant processors have a lifespan of 7–10 years — and manufacturers discontinue models after that window. The entire first cohort of ~733 children implanted between 2012–2017 has now aged into a replacement cycle with no systematic government support, no local spare parts, and families whose annual incomes are below ₹2 lakh facing replacement costs of ₹3–7 lakh.</p>
+      <div class="pain-data">₹34.18 crore invested in surgery · ₹0 planned for processor lifecycle replacement</div>
+    </div>
+    <div class="pain-card fade-up delay-1">
+      <div class="pain-number">2</div>
+      <div class="pain-label">Logistics failure</div>
+      <div class="pain-title">No local dealer.<br>All parts from Bengaluru.</div>
+      <p class="pain-body">MED-EL, Cochlear Limited, and Advanced Bionics have no offices in Kerala. A broken cable or a faulty coil — parts costing under ₹5,000 — must be sourced through Bengaluru, taking 2–6 weeks. In Kerala's humid climate, moisture damage is the single most common failure mode.</p>
+      <div class="pain-data">Avg repair turnaround: 3–6 weeks vs. 1–2 days with local stock</div>
+    </div>
+    <div class="pain-card fade-up delay-2">
+      <div class="pain-number">3</div>
+      <div class="pain-label">Financial impossibility</div>
+      <div class="pain-title">Maintenance cost exceeds<br>family income.</div>
+      <p class="pain-body">Eligible families earn below ₹2 lakh per year. Annual maintenance — batteries, therapy, mapping sessions, travel, repairs — costs ₹50,000 to ₹2.75 lakh. A processor upgrade every 7–10 years adds ₹3–7 lakh. No scheme, no NGO, and no hospital currently bridges this gap systematically.</p>
+      <div class="pain-data">Annual family income cap: ₹2L · Min. annual device cost: ₹50,000</div>
+    </div>
+    <div class="pain-card fade-up delay-1">
+      <div class="pain-number">4</div>
+      <div class="pain-label">Bureaucratic delay</div>
+      <div class="pain-title">Scheme transfer froze<br>approvals for 6+ months.</div>
+      <p class="pain-body">In 2023, Sruthi Tharangam was transferred from KSSM to the State Health Agency under NHM. During the transition, upgrade approvals halted. 50 children under age 3 waited 6 months for new surgery approvals. 360+ children waited for maintenance support.</p>
+      <div class="pain-data">6-month approval freeze · 360+ children affected · CIACS filed protest</div>
+    </div>
+    <div class="pain-card fade-up delay-2">
+      <div class="pain-number">5</div>
+      <div class="pain-label">No tracking system</div>
+      <div class="pain-title">Nobody knows who<br>needs help next.</div>
+      <p class="pain-body">There is no centralised database that tracks which child received which implant model, in which year, from which manufacturer — and therefore no alert system that flags when a child's processor is approaching end-of-life. Upgrades are reactive rather than proactive.</p>
+      <div class="pain-data">Zero proactive tracking · Reactive-only system · 100% preventable with tech</div>
+    </div>
+    <div class="pain-card fade-up delay-1" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%;">
+      <div class="pain-number">6</div>
+      <div class="pain-label">Therapy discontinuation</div>
+      <div class="pain-title">Hearing the sound<br>isn't the same as understanding it.</div>
+      <p class="pain-body">A cochlear implant delivers audio signals — but without ongoing Auditory Verbal Therapy (AVT), the brain does not learn to interpret them. AVT costs ₹25,000–₹1 lakh per year. After exceeding the government's formal support window, therapy usually stops entirely.</p>
+      <div class="pain-data">AVT cost: ₹25k–₹1L / year · Coverage after age 5: near zero</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: DATA ══ -->
+<div class="section-rule"></div>
+<div class="section" id="data">
+  <div class="section-header fade-up">
+    <div class="section-number">02</div>
+    <div class="section-title-block">
+      <div class="section-kicker">Validating the problem</div>
+      <h2 class="section-title">The data behind<br>the <em>silence</em></h2>
+      <p class="section-intro">Every number here represents a child who received surgery, whose family fulfilled every requirement of the scheme — and who is now waiting for a system that wasn't designed to reach them at this stage of life.</p>
+    </div>
+  </div>
+
+  <div class="data-row fade-up">
+    <div class="chart-block">
+      <div class="chart-label">Implants over time</div>
+      <h3 class="chart-title">Government-funded cochlear implants, 2012–2025</h3>
+      <p class="chart-body">In the first five years alone (2012–2017), ₹34.18 crore was spent on 733 surgeries. By 2019, the count reached 948. The estimated total today stands between 1,500 and 2,000 — every one of whom will need a processor upgrade.</p>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-name">2012–2014</div><div class="bar-track"><div class="bar-fill green" style="width:16%"></div></div><div class="bar-val">~280</div></div>
+        <div class="bar-row"><div class="bar-name">2015–2017</div><div class="bar-track"><div class="bar-fill green" style="width:43%; animation-delay:0.1s"></div></div><div class="bar-val">~733</div></div>
+        <div class="bar-row"><div class="bar-name">2018–2019</div><div class="bar-track"><div class="bar-fill amber" style="width:56%; animation-delay:0.2s"></div></div><div class="bar-val">~948</div></div>
+        <div class="bar-row"><div class="bar-name">2020–2022</div><div class="bar-track"><div class="bar-fill amber" style="width:76%; animation-delay:0.3s"></div></div><div class="bar-val">~1,280</div></div>
+        <div class="bar-row"><div class="bar-name">2023–2025 (est.)</div><div class="bar-track"><div class="bar-fill red" style="width:100%; animation-delay:0.4s"></div></div><div class="bar-val">~1,700</div></div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-label">The upgrade window</div>
+      <h3 class="chart-title">Children entering 7–10 year processor replacement cycle</h3>
+      <p class="chart-body">The first-wave cohort (implanted 2012–2017) is now past the standard replacement window. The upgrade crisis will grow each year as subsequent cohorts age into the same gap.</p>
+      <div class="timeline">
+        <div class="tl-item ok"><div class="tl-year">2012–2015</div><div class="tl-event">Surgeries performed, scheme fully operational</div><div class="tl-note">733 children receive implants. No upgrade framework yet needed.</div></div>
+        <div class="tl-item warn"><div class="tl-year">2018–2019</div><div class="tl-event">First maintenance signs emerge</div><div class="tl-note">Govt begins some maintenance support. 948 total implant count.</div></div>
+        <div class="tl-item crisis"><div class="tl-year">2023 — Crisis point</div><div class="tl-event">Scheme transfer halts all approvals for 6 months</div><div class="tl-note">CIACS reports 360+ children unattended. 50 surgery approvals frozen. Protest announced.</div></div>
+        <div class="tl-item ok"><div class="tl-year">July 2023</div><div class="tl-event">SHA releases ₹59.47 lakh for 25 urgent upgrades</div><div class="tl-note">25 of 360+ addressed. Remaining 335+ still waiting.</div></div>
+        <div class="tl-item crisis"><div class="tl-year">2024–2025</div><div class="tl-event">Second cohort enters upgrade window</div><div class="tl-note">Children implanted 2015–2018 now aging into replacement cycle. Crisis doubles in scale.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-row fade-up" style="margin-bottom:0;">
+    <div class="chart-block">
+      <div class="chart-label">Scheme coverage gap</div>
+      <h3 class="chart-title">Out of 100 implanted children — what the scheme actually covers</h3>
+      <div class="waffle" id="waffle-chart"></div>
+      <div class="waffle-legend">
+        <div class="wl-item"><div class="wl-dot" style="background:var(--green)"></div>Surgery + early therapy (covered)</div>
+        <div class="wl-item"><div class="wl-dot" style="background:var(--amber)"></div>Partial maintenance</div>
+        <div class="wl-item"><div class="wl-dot" style="background:var(--cream); border:1px solid var(--rule-strong)"></div>No upgrade support</div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-label">Annual cost burden per family</div>
+      <h3 class="chart-title">What families must pay — with no scheme support</h3>
+      <p class="chart-body">Family income ceiling for eligibility is ₹2 lakh per year. Yet the device alone demands this and more — every year.</p>
+      <table class="cost-table">
+        <thead><tr><th>Item</th><th>Annual cost</th><th>Impact if missed</th></tr></thead>
+        <tbody>
+          <tr><td class="cost-item">Batteries<br><span class="cost-note">Rechargeable packs, ~2 per year</span></td><td class="cost-amount">₹8k–₹15k</td><td class="cost-impact">Device stops working <span class="badge badge-red">Critical</span></td></tr>
+          <tr><td class="cost-item">AVT therapy<br><span class="cost-note">Weekly sessions, trained therapist</span></td><td class="cost-amount">₹25k–₹1L</td><td class="cost-impact">Language stagnation <span class="badge badge-amber">High risk</span></td></tr>
+          <tr><td class="cost-item">Mapping sessions<br><span class="cost-note">Audiologist re-programming</span></td><td class="cost-amount">₹5k–₹20k</td><td class="cost-impact">Degraded sound quality <span class="badge badge-amber">Medium</span></td></tr>
+          <tr><td class="cost-item">Minor repairs<br><span class="cost-note">Cables, coils, moisture damage</span></td><td class="cost-amount">₹50k–₹1L</td><td class="cost-impact">Weeks of silence <span class="badge badge-red">High risk</span></td></tr>
+          <tr><td class="cost-item">Processor upgrade<br><span class="cost-note">Every 7–10 years, model discontinued</span></td><td class="cost-amount">₹3L–₹7L</td><td class="cost-impact">Complete hearing loss <span class="badge badge-red">Critical</span></td></tr>
+        </tbody>
+        <tfoot><tr><td><strong>Total annual burden</strong><br><span style="font-size:12px; color:var(--ink-faint); font-weight:300;">Excluding upgrade year</span></td><td class="cost-amount">₹98k–₹2.91L</td><td style="font-size:12px; color:var(--red); font-weight:500;">Family income ceiling: ₹2L</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ URGENCY QUOTE ══ -->
+<div class="urgency-strip">
+  <div class="masthead-noise"></div>
+  <div class="urgency-inner">
+    <div class="urgency-label">CIACS State President, Navas Edathinnayil · July 2023</div>
+    <p class="urgency-quote">The delay in providing maintenance significantly impacts children. Just one week of hearing loss can result in a setback of three weeks in their ability to speak properly. Moreover, it can also affect their learning capacity and result in psychological issues.</p>
+    <div class="urgency-source">Cochlear Implantees Association and Charitable Society, Kerala — in response to the 2023 scheme transfer freeze</div>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: BRAIN IMPACT ══ -->
+<div class="section-rule"></div>
+<div class="section" id="brain">
+  <div class="section-header fade-up">
+    <div class="section-number">03</div>
+    <div class="section-title-block">
+      <div class="section-kicker">Neuroscience of delay</div>
+      <h2 class="section-title">What silence does<br>to a <em>developing brain</em></h2>
+      <p class="section-intro">This is not a device malfunction. It is a neurological event. When a processor fails, the auditory cortex begins to reorganise. Neural pathways built over years of therapy are pruned. Vision takes over the cortex real estate that hearing once occupied. This process is not fully reversible.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote fade-up">
+    <p>"We don't actually hear with our ears — we hear with our brain. The ears are the doorways for sound. If there is no sound information getting to the brain, those auditory neural branches will be pruned away."</p>
+    <cite>— Centre for Hearing, India · Neurodevelopmental research brief</cite>
+  </div>
+
+  <div class="brain-grid fade-up">
+    <div class="brain-card">
+      <div class="brain-domain">Domain 01</div>
+      <div class="brain-icon-wrap">🧠</div>
+      <div class="brain-effect">Cognitive decline</div>
+      <p class="brain-detail">Auditory areas of the brain that go unstimulated begin to lose function — affecting speech recognition, working memory, and concentration. For a student in Class X, this is a direct hit to board exam preparation.</p>
+      <div class="brain-severity"><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot"></div></div>
+    </div>
+    <div class="brain-card">
+      <div class="brain-domain">Domain 02</div>
+      <div class="brain-icon-wrap">🤝</div>
+      <div class="brain-effect">Social withdrawal</div>
+      <p class="brain-detail">Hearing loss is invisible. Teachers and peers read withdrawal as apathy or attitude. Group activities become painful. A child who socialised normally for years reverts to isolation within weeks of device failure.</p>
+      <div class="brain-severity"><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot"></div></div>
+    </div>
+    <div class="brain-card">
+      <div class="brain-domain">Domain 03</div>
+      <div class="brain-icon-wrap">💙</div>
+      <div class="brain-effect">Emotional regression</div>
+      <p class="brain-detail">Anger, frustration, depression, and low self-esteem are well-documented outcomes of untreated hearing loss. For a teenager who knows exactly what they are missing — unlike a pre-verbal infant — the psychological impact is acute.</p>
+      <div class="brain-severity"><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div></div>
+    </div>
+    <div class="brain-card">
+      <div class="brain-domain">Domain 04</div>
+      <div class="brain-icon-wrap">🏃</div>
+      <div class="brain-effect">Physical disengagement</div>
+      <p class="brain-detail">Physical activity for children is mostly social and group-based. Without hearing, the motivation to participate drops. This adds physical health decline to an already compounding set of developmental setbacks.</p>
+      <div class="brain-severity"><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot"></div><div class="severity-dot"></div></div>
+    </div>
+    <div class="brain-card">
+      <div class="brain-domain">Domain 05</div>
+      <div class="brain-icon-wrap">📚</div>
+      <div class="brain-effect">Behavioural and academic failure</div>
+      <p class="brain-detail">Inability to follow directions and express oneself in class manifests as either disruptive behaviour or total withdrawal. Both lead to academic failure. For the 15–25 cohort, this means missed exams, lost college years, and closed job doors.</p>
+      <div class="brain-severity"><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div><div class="severity-dot active"></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px; background:var(--cream); padding:40px; border-left:3px solid var(--amber);" class="fade-up">
+    <div class="chart-label" style="color:var(--amber);">Key finding — brain plasticity research</div>
+    <p style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; margin-bottom:12px; line-height:1.3;">After 3½ years of age, the brain has considerably less flexibility to develop auditory processing skills. But even established pathways degrade rapidly when input stops.</p>
+    <p style="font-size:14px; color:var(--ink-muted); font-weight:300; line-height:1.7;">This means every child who received surgery at age 0–3 and developed normal speech — and whose device later fails at age 12, 15, or 20 — is at risk of losing the very capabilities that the ₹34 crore government investment was designed to build. The investment doesn't compound. It evaporates. Silently.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 4: COHORTS ══ -->
+<div class="section-rule"></div>
+<div class="section" id="cohorts">
+  <div class="section-header fade-up">
+    <div class="section-number">04</div>
+    <div class="section-title-block">
+      <div class="section-kicker">Who is waiting right now</div>
+      <h2 class="section-title">The four cohorts<br>and their <em>urgency</em></h2>
+      <p class="section-intro">Children implanted at age 0–3 between 2012 and 2025 are now distributed across four life stages. Each cohort faces different consequences from device failure — and different windows of opportunity for intervention.</p>
+    </div>
+  </div>
+
+  <div class="cohort-wrap fade-up">
+    <div class="cohort-card">
+      <div class="cohort-age">5–9</div>
+      <div class="cohort-label">Implanted 2016–2020 · Primary school</div>
+      <div class="cohort-count">Estimated ~450 children in this band</div>
+      <p style="font-size:13px; color:var(--ink-muted); font-weight:300; line-height:1.6;">In early school years. Approaching the upgrade window. Speech development is active and highly dependent on consistent device function. A 3-month failure at this age causes measurable language gaps that require extensive therapy to close.</p>
+      <div class="cohort-crisis">Upgrade window: beginning now · Severity: high</div>
+    </div>
+    <div class="cohort-card">
+      <div class="cohort-age">10–14</div>
+      <div class="cohort-label">Implanted 2011–2015 · Upper school</div>
+      <div class="cohort-count">Estimated ~380 children in this band</div>
+      <p style="font-size:13px; color:var(--ink-muted); font-weight:300; line-height:1.6;">In critical academic years. Many are overdue for upgrade. School-level exams, peer relationships, and social identity formation are all directly impacted by device failure. This cohort is the largest currently in active academic crisis.</p>
+      <div class="cohort-crisis">Upgrade window: many overdue · Severity: very high</div>
+    </div>
+    <div class="cohort-card urgent">
+      <div class="cohort-age">15–19</div>
+      <div class="cohort-label">Implanted 2006–2010 · Board exams / college entry</div>
+      <div class="cohort-count" style="color:rgba(245,240,232,0.6)">Estimated ~220 in this band</div>
+      <p style="font-size:13px; color:rgba(245,240,232,0.55); font-weight:300; line-height:1.6;">Sitting SSLC and Plus Two exams. Applying to colleges. A malfunctioning processor during this window is not recoverable — a missed exam year cannot be un-missed. No formal support programme covers this cohort.</p>
+      <div class="cohort-crisis">Outside all scheme support · Severity: critical</div>
+    </div>
+    <div class="cohort-card urgent">
+      <div class="cohort-age">20–25</div>
+      <div class="cohort-label">Implanted pre-2006 · College / job market</div>
+      <div class="cohort-count" style="color:rgba(245,240,232,0.6)">Estimated ~120+ in this band</div>
+      <p style="font-size:13px; color:rgba(245,240,232,0.55); font-weight:300; line-height:1.6;">In higher education or entering the workforce. Rubin Jimmy — a direct Sruthi Tharangam beneficiary, now in Class IX — represents this cohort's story: a broken external processor, a ₹7–8 lakh replacement cost, and parents who cannot afford it.</p>
+      <div class="cohort-crisis">No institutional support · Severity: irreversible</div>
+    </div>
+  </div>
+
+  <div class="data-row fade-up">
+    <div class="chart-block">
+      <div class="chart-label">Scheme coverage by cohort</div>
+      <h3 class="chart-title">What the government covers — and what it doesn't</h3>
+      <div class="bar-chart" style="margin-top:20px;">
+        <div class="bar-row"><div class="bar-name">Surgery (all ages)</div><div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div><div class="bar-val">100%</div></div>
+        <div class="bar-row"><div class="bar-name">AVT therapy (0–5)</div><div class="bar-track"><div class="bar-fill green" style="width:80%; animation-delay:0.1s"></div></div><div class="bar-val">Partial</div></div>
+        <div class="bar-row"><div class="bar-name">Maintenance (5–12)</div><div class="bar-track"><div class="bar-fill amber" style="width:40%; animation-delay:0.2s"></div></div><div class="bar-val">Limited</div></div>
+        <div class="bar-row"><div class="bar-name">Upgrade (12–25)</div><div class="bar-track"><div class="bar-fill red" style="width:10%; animation-delay:0.3s"></div></div><div class="bar-val">&lt;5%</div></div>
+        <div class="bar-row"><div class="bar-name">Local parts depot</div><div class="bar-track"><div class="bar-fill red" style="width:0%; animation-delay:0.4s"></div></div><div class="bar-val">Zero</div></div>
+        <div class="bar-row"><div class="bar-name">Proactive tracking</div><div class="bar-track"><div class="bar-fill red" style="width:0%; animation-delay:0.5s"></div></div><div class="bar-val">Zero</div></div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-label">The math of urgency</div>
+      <h3 class="chart-title">Cost to fix vs. cost of delay</h3>
+      <p class="chart-body" style="margin-bottom:24px;">The government spent ₹4.66 lakh per child on average for surgery. The annual cost of leaving a device unrepaired — in speech regression, lost schooling, and eventual re-habilitation — far exceeds the cost of timely maintenance.</p>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-name">Battery replacement</div><div class="bar-track"><div class="bar-fill green" style="width:5%"></div></div><div class="bar-val">₹10k/yr</div></div>
+        <div class="bar-row"><div class="bar-name">Annual therapy</div><div class="bar-track"><div class="bar-fill amber" style="width:25%; animation-delay:0.1s"></div></div><div class="bar-val">₹50k/yr</div></div>
+        <div class="bar-row"><div class="bar-name">Processor upgrade</div><div class="bar-track"><div class="bar-fill amber" style="width:50%; animation-delay:0.2s"></div></div><div class="bar-val">₹5L avg</div></div>
+        <div class="bar-row"><div class="bar-name">Re-habilitation (if lapsed)</div><div class="bar-track"><div class="bar-fill red" style="width:80%; animation-delay:0.3s"></div></div><div class="bar-val">₹8L+</div></div>
+        <div class="bar-row"><div class="bar-name">Lost education year</div><div class="bar-track"><div class="bar-fill red" style="width:100%; animation-delay:0.4s"></div></div><div class="bar-val">Irreversible</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA ══ -->
+<div class="cta-section" id="act">
+  <div class="cta-inner">
+    <div>
+      <div class="masthead-eyebrow" style="color:rgba(255,255,255,0.5); margin-bottom:20px;">For IT companies — the ask</div>
+      <h2 class="cta-headline">Three ways to<br>restore <em>hearing</em><br>this year.</h2>
+      <p style="margin-top:24px; font-size:15px; color:rgba(255,255,255,0.6); font-weight:300; line-height:1.7; max-width:400px;">The government built the foundation. Hospitals implanted the devices. Families kept their children in therapy. Now the system needs a last-mile partner — and that's where IT companies fit precisely.</p>
+    </div>
+    <div class="cta-actions">
+      <div class="cta-action">
+        <div class="cta-action-num">Action 01</div>
+        <div class="cta-action-title">Sponsor processor upgrades via KSSM</div>
+        <div class="cta-action-detail">The government has a formal sponsorship route: pay the implant/upgrade cost to KSSM, which handles procurement and surgery. ₹5–7 lakh per child restores hearing for a decade. 10 sponsors = 10 children back in the classroom.</div>
+      </div>
+      <div class="cta-action">
+        <div class="cta-action-num">Action 02</div>
+        <div class="cta-action-title">Fund a local parts depot in Kerala</div>
+        <div class="cta-action-detail">A pooled fund across 3–4 IT companies could establish a spare parts inventory at an empanelled hospital in Thiruvananthapuram or Kochi — cutting repair turnaround from 3–6 weeks to 1–2 days.</div>
+      </div>
+      <div class="cta-action">
+        <div class="cta-action-num">Action 03</div>
+        <div class="cta-action-title">Build the tracking system — zero cash CSR</div>
+        <div class="cta-action-detail">No centralised database exists. A 10-person volunteer team could build a registry in one quarter: which child, which model, which year — with automated upgrade alerts. This is an IT problem waiting for an IT company.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>Kerala Cochlear Implant Crisis Report · March 2025</div>
+  <div>Data: KSSM · CIACS · National Health Mission · Centre For Hearing India</div>
+  <div>Sruthi Tharangam Scheme · Kerala Social Security Mission</div>
+</footer>
+
+<script>
+  /* ── Video hero: mute toggle ── */
+  var video    = document.getElementById('hero-video');
+  var hlRain   = document.getElementById('hl-rain');
+  var hlSilent = document.getElementById('hl-silent');
+  var btn      = document.getElementById('cta-btn');
+  var wave     = document.getElementById('wave');
+  var overlay  = document.getElementById('start-overlay');
+  var soundOn  = false;
+  var fadeInterval = null;
+
+  function fadeVolume(target, onDone) {
+    if (fadeInterval) clearInterval(fadeInterval);
+    var start = video.volume, diff = target - start, step = 0, steps = 40;
+    fadeInterval = setInterval(function () {
+      step++;
+      video.volume = Math.min(1, Math.max(0, start + diff * (step / steps)));
+      if (step >= steps) {
+        clearInterval(fadeInterval);
+        fadeInterval = null;
+        video.volume = target;
+        if (onDone) onDone();
+      }
+    }, 1200 / steps);
+  }
+
+  overlay.addEventListener('click', function () {
+    overlay.classList.add('hidden');
+    video.muted = false;
+    video.volume = 0;
+    video.play();
+    soundOn = true;
+    fadeVolume(1);
+  });
+
+  function addRipple(e) {
+    var r = document.createElement('span');
+    r.className = 'ripple';
+    var rect = btn.getBoundingClientRect();
+    r.style.left = (e.clientX - rect.left - 5) + 'px';
+    r.style.top  = (e.clientY - rect.top  - 5) + 'px';
+    btn.appendChild(r);
+    r.addEventListener('animationend', function () { r.remove(); });
+  }
+
+  btn.addEventListener('click', function (e) {
+    addRipple(e);
+    if (soundOn) {
+      soundOn = false;
+      wave.classList.add('muted');
+      btn.textContent = 'Click Me Again';
+      hlRain.style.opacity   = '0';
+      hlSilent.style.opacity = '1';
+      fadeVolume(0, function () { video.muted = true; });
+    } else {
+      soundOn = true;
+      wave.classList.remove('muted');
+      btn.textContent = 'Click Me';
+      hlRain.style.opacity   = '1';
+      hlSilent.style.opacity = '0';
+      video.muted  = false;
+      video.volume = 0;
+      fadeVolume(1);
+    }
+  });
+
+
+  /* ── Mute on scroll past video hero ── */
+  var heroSection = document.getElementById('video-hero');
+  var scrollMuted = false;
+  window.addEventListener('scroll', function () {
+    var heroBottom = heroSection.getBoundingClientRect().bottom;
+    if (heroBottom < 0 && !scrollMuted && soundOn) {
+      // User has scrolled past the video — fade out and mute
+      scrollMuted = true;
+      soundOn = false;
+      wave.classList.add('muted');
+      btn.textContent = 'Click Me Again';
+      hlRain.style.opacity   = '0';
+      hlSilent.style.opacity = '1';
+      fadeVolume(0, function () { video.muted = true; });
+    } else if (heroBottom >= 0) {
+      // Reset the scrollMuted flag when back in view
+      scrollMuted = false;
+    }
+  });
+
+  /* ── Fade-up observer ── */
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
+
+  /* ── Waffle chart ── */
+  var waffle = document.getElementById('waffle-chart');
+  for (var i = 0; i < 100; i++) {
+    var cell = document.createElement('div');
+    cell.className = 'waffle-cell';
+    if (i < 30)       cell.classList.add('covered');
+    else if (i < 55)  cell.classList.add('partial');
+    waffle.appendChild(cell);
+  }
+
+  /* ── Bar chart scroll animation ── */
+  var barObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach(function (bar, i) {
+          bar.style.animationDelay = (i * 0.12) + 's';
+          bar.style.animationPlayState = 'running';
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.bar-chart').forEach(function (el) {
+    el.querySelectorAll('.bar-fill').forEach(function (b) { b.style.animationPlayState = 'paused'; });
+    barObserver.observe(el);
+  });
+</script>
+
+<!-- ── FROSTED FLOATING BUTTON ── -->
+<a id="project-details-btn" href="index.html">Beats for a Cause — Details</a>
+
+</body>
+</html>
